@@ -1,3 +1,4 @@
+# 1. Composite action | using: 'composite'
 # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
 name: 'Get  & Cache Dependencies'
 description: 'Get the dependencies (via npm) and cache them.'
