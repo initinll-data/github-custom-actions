@@ -66,12 +66,12 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
+      # using custom javascript reusable action
       - name: Deploy site
-        run: echo "Deploying..."
-  information: 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v4
-      - name: Run custom javascript action
         uses: ./.github/actions/deploy-s3-javascript
+        env:
+          AWS_ACCESS_KEY_ID: AAAAAAAAA
+          AWS_SECRET_ACCESS_KEY: BBBBBBBBB
+        with:
+          bucket: aws-custom-bucket-name
+          dist-folder: ./dist
