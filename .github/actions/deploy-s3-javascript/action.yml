@@ -1,0 +1,7 @@
+# 2. Javascript action | using: 'node'
+# https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-javascript-action
+name: 'Deploy to AWS S3'
+description: 'Deploy a static website via S3.'
+runs:
+  using: 'node16'
+  main: 'main.js'
