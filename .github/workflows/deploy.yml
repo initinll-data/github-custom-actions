@@ -66,8 +66,9 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
-      # using custom javascript reusable action
+      # using custom javascript reusable action with input & output
       - name: Deploy site
+        id: deploy-site
         uses: ./.github/actions/deploy-s3-javascript
         env:
           AWS_ACCESS_KEY_ID: AAAAAAAAA
@@ -75,3 +76,7 @@ jobs:
         with:
           bucket: aws-custom-bucket-name
           dist-folder: ./dist
+      # display custom javascript reusable action output
+      - name: Output information
+        run: |
+          echo "Live URL: ${{ steps.deploy-site.outputs.website-url }}"

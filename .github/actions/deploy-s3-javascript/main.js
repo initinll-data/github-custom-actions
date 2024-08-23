@@ -19,6 +19,10 @@ function run() {
     // const s3Uri = `s3://${bucket}`;
     // exec.exec(`ws s3 sync ${distFolder} ${s3Uri} --region ${bucketRegion}`);
     core.notice('Upload to S3 complete!');
+
+    // 4) Send output
+    const websiteUrl = `http://${bucket}.s3-website-${bucketRegion}.amazonaws.com`;
+    core.setOutput('website-url', websiteUrl);
 }
 
 run();
