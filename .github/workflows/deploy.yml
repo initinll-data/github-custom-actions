@@ -67,8 +67,8 @@ jobs:
       - name: Output contents
         run: ls
       # using custom javascript reusable action with input & output
-      - name: Deploy site
-        id: deploy-site
+      - name: Deploy site by Javascript action
+        id: deploy-site-via-js-action
         uses: ./.github/actions/deploy-s3-javascript
         env:
           AWS_ACCESS_KEY_ID: AAAAAAAAA
@@ -77,6 +77,20 @@ jobs:
           bucket: aws-custom-bucket-name
           dist-folder: ./dist
       # display custom javascript reusable action output
-      - name: Output information
+      - name: Output Javascript action information
         run: |
-          echo "Live URL: ${{ steps.deploy-site.outputs.website-url }}"
+          echo "Live URL: ${{ steps.deploy-site-via-js-action.outputs.website-url }}"
+      # using custom Docker container action reusable action with input & output
+      - name: Deploy site by Docker container action
+        id: deploy-site-via-docker-action
+        uses: ./.github/actions/deploy-s3-docker
+        env:
+          AWS_ACCESS_KEY_ID: AAAAAAAAA
+          AWS_SECRET_ACCESS_KEY: BBBBBBBBB
+        with:
+          bucket: aws-custom-bucket-name
+          dist-folder: ./dist
+      # display custom Docker container reusable action output
+      - name: Output Docker container action information
+        run: |
+          echo "Live URL: ${{ steps.deploy-site-via-docker-action.outputs.website-url }}"
